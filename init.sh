@@ -16,6 +16,7 @@ cd api
 rm -rf ./prisma/migrations
 npx prisma migrate dev 
 cd ..
+docker-compose restart api
 docker ps -a
 
 
