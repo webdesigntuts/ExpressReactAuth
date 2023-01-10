@@ -7,7 +7,9 @@ cp .env.example .env
 npm install
 npx prisma generate
 cd ..
-docker rm db
+docker rm webDesignTutsDb
+docker rm webDesignTutsApi
+docker rm webDesignTutsFrontend
 docker-compose up -d
 cd api
 rm -rf ./prisma/migrations
