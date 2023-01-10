@@ -8,7 +8,7 @@ npm install
 npx prisma generate
 cd ..
 docker-compose down
-docker container kill $(docker container ls -q)
+docker kill $(docker ps -q)
 docker-compose down --rmi all -v --remove-orphans
 docker-compose up -d
 cd api
