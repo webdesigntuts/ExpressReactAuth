@@ -19,4 +19,6 @@ router.post("/logout", accountController.logout);
 
 router.get("/whoami", requiresAuth, accountController.whoAmI);
 
+router.delete("/me", requiresAuth, accountController.deleteAcc);
+
 export default router;
