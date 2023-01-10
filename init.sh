@@ -7,6 +7,7 @@ cp .env.example .env
 npm install
 npx prisma generate
 cd ..
+docker ps -aq | xargs docker stop
 docker rm webDesignTutsDb
 docker rm webDesignTutsApi
 docker rm webDesignTutsFrontend
