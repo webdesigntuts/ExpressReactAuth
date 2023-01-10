@@ -7,20 +7,24 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+import { useTheme } from "./context/ThemeProvider";
 import "./styles/App.scss";
-import { useWhoami } from "./queries/authQueries";
 import GlobalSpinner from "./components/GlobalSpinner";
 import Login from "./pages/Login";
-import { useTheme } from "./context/ThemeProvider";
+import Register from "./pages/Register/Register";
+import { useWhoami } from "./queries/authQueries";
 
 //TEST
 import { useLogout } from "./queries/authQueries";
+import { useDeleteAccount } from "./queries/accountQueries";
 import Button from "./components/Button";
 
 function App() {
   const { data, isLoading } = useWhoami();
   const { mode } = useTheme();
   const { mutate: logout } = useLogout();
+  const { mutate: deleteAccount } = useDeleteAccount();
+
   const router = createBrowserRouter([
     {
       path: "login",
@@ -32,6 +36,20 @@ function App() {
             <GlobalSpinner />
           ) : (
             <Login />
+          )}
+        </Fragment>
+      ),
+    },
+    {
+      path: "register",
+      element: (
+        <Fragment>
+          {!isLoading && data?.user?.id ? (
+            <Navigate to='/' />
+          ) : isLoading ? (
+            <GlobalSpinner />
+          ) : (
+            <Register />
           )}
         </Fragment>
       ),
@@ -53,6 +71,14 @@ function App() {
                 }}
               >
                 Logout
+              </Button>
+              <Button
+                mt={16}
+                onClick={() => {
+                  deleteAccount();
+                }}
+              >
+                Delete Account
               </Button>
             </div>
           )}
