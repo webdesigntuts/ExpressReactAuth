@@ -6,7 +6,9 @@ cp .env.example .env
 npm install
 npx prisma generate
 cd ..
-docker ps -aq | xargs docker stop | xargs docker rm
+docker-compose down
+docker rm -f $(docker ps -a -q)
+docker volume rm $(docker volume ls -q)
 docker-compose up -d
 cd api
 rm -rf ./prisma/migrations
