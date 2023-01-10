@@ -1,6 +1,7 @@
 cd frontend
 npm install
 cd ../api
+mv .env.example .env
 npm install
 npx prisma generate
 cd ..
