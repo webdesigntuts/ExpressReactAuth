@@ -11,6 +11,7 @@ import { useTheme } from "./context/ThemeProvider";
 import "./styles/App.scss";
 import GlobalSpinner from "./components/GlobalSpinner";
 import Layout from "./components/Layout";
+import Interceptor from "./components/Interceptor";
 import Login from "./pages/Login";
 import Register from "./pages/Register/Register";
 import NotFound from "./pages/404";
@@ -60,6 +61,7 @@ function App() {
             <Navigate to='/login' />
           ) : (
             <Layout>
+              <Interceptor />
               <Outlet />
             </Layout>
           )}
