@@ -12,6 +12,7 @@ import "./styles/App.scss";
 import GlobalSpinner from "./components/GlobalSpinner";
 import Login from "./pages/Login";
 import Register from "./pages/Register/Register";
+import NotFound from "./pages/404";
 import { useWhoami } from "./queries/authQueries";
 
 //TEST
@@ -84,6 +85,12 @@ function App() {
           )}
         </Fragment>
       ),
+      children: [
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
     },
   ]);
 
