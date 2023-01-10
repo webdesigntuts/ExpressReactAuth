@@ -2,7 +2,7 @@ version: "3.7"
 services:
   db:
     image: postgres:12.2
-    container_name: db
+    container_name: webDesignTutsDb
     restart: always
     environment:
       POSTGRES_PASSWORD: password
@@ -14,12 +14,12 @@ services:
       - 5432:5432
   api:
     build: ./api
-    container_name: api
+    container_name: webDesignTutsApi
     restart: always
     ports:
       - 3000:3000
     depends_on:
-      - db
+      - webDesignTutsDb
     environment:
       - DB_HOST=db
       - DB_USER=user
@@ -31,14 +31,14 @@ services:
       - ./api:/usr/src/app
   frontend:
     build: ./frontend
-    container_name: frontend
     restart: always
     ports:
       - 5173:5173
     depends_on:
-      - api
-      - db
+      - webDesignTutsApi
+      - webDesignTutsDb
     environment:
       - VITE_AXIOS_BASE_URL=http://localhost:3000
     volumes:
       - ./frontend:/usr/src/app
+    container_name: webDesignTutsFrontend
